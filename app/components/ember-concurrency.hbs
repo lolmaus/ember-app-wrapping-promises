@@ -1,0 +1,33 @@
+<div
+  class="EmberConcurrency"
+  ...attributes
+>
+  <p>
+    {{#if this.dataTask.isRunning}}
+      Loading...
+    {{else if this.dataTask.last.isSuccessful}}
+      {{this.dataTask.last.value.firstName}}
+    {{else if this.dataTask.last.isError}}
+      Something went wrong:
+      {{format-error this.dataTask.last.error}}.
+    {{else}}
+      The promise failed to start, this should never happen.
+    {{/if}}
+  </p>
+
+  <p>
+    <button
+      type="button"
+      {{on "click" (perform this.dataTask false)}}
+    >
+      Restart
+    </button>
+
+    <button
+      type="button"
+      {{on "click" (perform this.dataTask true)}}
+    >
+      Restart and fail
+    </button>
+  </p>
+</div>

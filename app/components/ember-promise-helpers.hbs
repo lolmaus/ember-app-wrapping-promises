@@ -1,0 +1,35 @@
+<div
+  class="EmberConcurrency"
+  ...attributes
+>
+  <p>
+    {{#if this.promise}}
+      {{#if (is-pending this.promise)}}
+        Loading...
+      {{else if (is-fulfilled this.promise)}}
+        {{get (await this.promise) "firstName"}}
+      {{else if (is-rejected this.promise)}}
+        Something went wrong:
+        {{format-error (promise-rejected-reason this.promise)}}.
+      {{else}}
+        The promise failed to start, this should never happen.
+      {{/if}}
+    {{/if}}
+  </p>
+
+  <p>
+    <button
+      type="button"
+      {{on "click" this.restart}}
+    >
+      Restart
+    </button>
+
+    <button
+      type="button"
+      {{on "click" (fn this.restart true)}}
+    >
+      Restart and fail
+    </button>
+  </p>
+</div>

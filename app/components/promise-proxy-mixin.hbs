@@ -1,0 +1,33 @@
+<div
+  class="EmberConcurrency"
+  ...attributes
+>
+  <p>
+    {{#if this.promiseProxy.isPending}}
+      Loading...
+    {{else if this.promiseProxy.isFulfilled}}
+      {{this.promiseProxy.content.firstName}}
+    {{else if this.promiseProxy.isRejected}}
+      Something went wrong:
+      {{format-error this.promiseProxy.reason}}
+    {{else}}
+      The promise failed to start, this should never happen.
+    {{/if}}
+  </p>
+
+  <p>
+    <button
+      type="button"
+      {{on "click" this.restart}}
+    >
+      Restart
+    </button>
+
+    <button
+      type="button"
+      {{on "click" (fn this.restart true)}}
+    >
+      Restart and fail
+    </button>
+  </p>
+</div>

@@ -3,6 +3,7 @@
 module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'ember-app-wrapping-promises',
+    podModulePrefix: 'ember-app-wrapping-promises/pods',
     environment,
     rootURL: '/',
     locationType: 'auto',

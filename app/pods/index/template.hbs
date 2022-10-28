@@ -1,0 +1,90 @@
+{{page-title "Wrapping promises"}}
+
+<h2 id="title">Wrapping promises</h2>
+
+<ul>
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="native-promise"
+        checked={{eq this.currentWrapper "native-promise"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      Native promise
+    </label>
+  </li>
+
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="promise-proxy-mixin"
+        checked={{eq this.currentWrapper "promise-proxy-mixin"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      PromiseProxyMixin
+    </label>
+  </li>
+
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="ember-concurrency"
+        checked={{eq this.currentWrapper "ember-concurrency"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      Ember Concurrency
+    </label>
+  </li>
+
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="ember-promise-helpers"
+        checked={{eq this.currentWrapper "ember-promise-helpers"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      Ember Promise Helpers
+    </label>
+  </li>
+
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="tracked-function"
+        checked={{eq this.currentWrapper "tracked-function"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      trackedFunction
+    </label>
+  </li>
+
+</ul>
+
+<div>
+  {{#if (eq this.currentWrapper "native-promise")}}
+    <NativePromise />
+  {{else if (eq this.currentWrapper "promise-proxy-mixin")}}
+    <PromiseProxyMixin />
+  {{else if (eq this.currentWrapper "ember-concurrency")}}
+    <EmberConcurrency />
+  {{else if (eq this.currentWrapper "ember-promise-helpers")}}
+    <EmberPromiseHelpers />
+  {{else if (eq this.currentWrapper "tracked-function")}}
+    <TrackedFunction />
+  {{/if}}
+</div>

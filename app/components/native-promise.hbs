@@ -1,0 +1,33 @@
+<div
+  class="NativePromise"
+  ...attributes
+>
+  <p>
+    {{#if this.isPending}}
+      Loading...
+    {{else if this.isComplete}}
+      {{this.data.firstName}}
+    {{else if this.isError}}
+      Something went wrong:
+      {{format-error this.error}}
+    {{else}}
+      The promise failed to start, this should never happen.
+    {{/if}}
+  </p>
+
+  <p>
+    <button
+      type="button"
+      {{on "click" this.getData}}
+    >
+      Restart
+    </button>
+
+    <button
+      type="button"
+      {{on "click" (fn this.getData true)}}
+    >
+      Restart and fail
+    </button>
+  </p>
+</div>
