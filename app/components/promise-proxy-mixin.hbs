@@ -1,10 +1,10 @@
 <div
-  class="EmberConcurrency"
+  class="PromiseProxyMixin"
   ...attributes
 >
   <p>
     {{#if this.promiseProxy.isPending}}
-      Loading...
+      Loading via PromiseProxyMixin...
     {{else if this.promiseProxy.isFulfilled}}
       {{this.promiseProxy.content.firstName}}
     {{else if this.promiseProxy.isRejected}}
@@ -18,7 +18,7 @@
   <p>
     <button
       type="button"
-      {{on "click" this.restart}}
+      {{on "click" (fn this.restart false)}}
     >
       Restart
     </button>

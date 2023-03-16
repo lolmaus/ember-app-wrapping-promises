@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 export default class MyServiceService extends Service {
   @service router;
 
-  get sampleData() {
+  _sampleData() {
     return {
       firstName: 'John',
       lastName: 'Doe',
@@ -12,19 +12,22 @@ export default class MyServiceService extends Service {
     };
   }
 
-  get sampleError() {
+  _sampleError() {
     return new Error('OMG! Something wrong happened.');
   }
 
   /* Actions */
 
-  getData = ({ shouldFail = false, delayMs = 4000 } = {}) => {
+  getData = ({ shouldFail = false, delayMs = 2000 } = {}) => {
+    console.log('getData start')
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (shouldFail) {
-          reject(this.sampleError);
+          console.log('getData reject')
+          reject(this._sampleError());
         } else {
-          resolve(this.sampleData);
+          console.log('getData resolve')
+          resolve(this._sampleData());
         }
       }, delayMs);
     });

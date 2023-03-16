@@ -1,16 +1,20 @@
 <div
-  class="EmberConcurrency"
+  class="EmberPromiseHelper"
   ...attributes
 >
   <p>
     {{#if this.promise}}
       {{#if (is-pending this.promise)}}
-        Loading...
+        Loading via ember-promise-helper...
       {{else if (is-fulfilled this.promise)}}
         {{get (await this.promise) "firstName"}}
       {{else if (is-rejected this.promise)}}
-        Something went wrong:
-        {{format-error (promise-rejected-reason this.promise)}}.
+        {{#let (promise-rejected-reason this.promise) as |error|}}
+          {{#if error}}
+            Something went wrong:
+            {{format-error error}}
+          {{/if}}
+        {{/let}}
       {{else}}
         The promise failed to start, this should never happen.
       {{/if}}
@@ -20,7 +24,7 @@
   <p>
     <button
       type="button"
-      {{on "click" this.restart}}
+      {{on "click" (fn this.restart false)}}
     >
       Restart
     </button>

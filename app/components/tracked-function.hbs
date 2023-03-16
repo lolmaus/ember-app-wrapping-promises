@@ -1,11 +1,15 @@
 <div
-  class="EmberConcurrency"
+  class="TrackedFunction"
   ...attributes
 >
   <p>
-    {{#if this.resource.isLoading}}
-      Loading...
-    {{else if this.resource.isResolved}}
+    {{#if this.resource.isPending}}
+      Loading via trackedFunction...
+
+      {{#if this.resource.value}}
+         Previous value: {{this.resource.value.firstName}}
+      {{/if}}
+    {{else if (not this.resource.isError)}}
       {{this.resource.value.firstName}}
     {{else if this.resource.isError}}
       Something went wrong:

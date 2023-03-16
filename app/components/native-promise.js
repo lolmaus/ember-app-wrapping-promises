@@ -31,19 +31,13 @@ export default class NativePromiseComponent extends Component {
   //   this.myService
   //     .getData()
   //     .then((data) => {
-  //       if (!this.isDestroying && !this.isDestroyed) {
-  //         this.data = data;
-  //       }
+  //       this.data = data;
   //     })
   //     .catch((error) => {
-  //       if (!this.isDestroying && !this.isDestroyed) {
-  //         this.error = error;
-  //       }
+  //       this.error = error;
   //     })
   //     .finally(() => {
-  //       if (!this.isDestroying && !this.isDestroyed) {
-  //         this.isPending = false;
-  //       }
+  //       this.isPending = false;
   //     });
   // }
 
@@ -54,21 +48,11 @@ export default class NativePromiseComponent extends Component {
     this.isPending = true;
 
     try {
-      const data = await this.myService.getData({ shouldFail });
-
-      // if (!this.isDestroying && !this.isDestroyed) {
-        this.data = data;
-
-        console.log("result", this.isDestroyed, this.isDestroying, this.data)
-      // }
+      this.data = await this.myService.getData({ shouldFail });
     } catch (error) {
-      // if (!this.isDestroying && !this.isDestroyed) {
-        this.error = error;
-      // }
+      this.error = error;
     } finally {
-      // if (!this.isDestroying && !this.isDestroyed) {
-        this.isPending = false;
-      // }
+      this.isPending = false;
     }
   };
 }

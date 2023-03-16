@@ -1,18 +1,18 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { trackedFunction } from 'ember-resources/util/function';
-import { tracked } from '@glimmer/tracking';
 
 export default class TrackedFunctionComponent extends Component {
   @service myService;
 
-  @tracked promise = this.myService.getData(); // Sync!
+  shouldFail = false; // Not tracked, so that it does not reinstantiate the resource
 
   resource = trackedFunction(this, () => {
-    return this.promise;
+    return this.myService.getData({ shouldFail: this.shouldFail });
   });
 
   restart = (shouldFail = false) => {
-    this.promise = this.myService.getData({ shouldFail }); // Sync!
+    this.shouldFail = shouldFail;
+    this.resource.retry();
   };
 }

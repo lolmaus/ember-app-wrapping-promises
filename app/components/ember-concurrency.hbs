@@ -4,7 +4,7 @@
 >
   <p>
     {{#if this.dataTask.isRunning}}
-      Loading...
+      Loading via ember-concurrency...
     {{else if this.dataTask.last.isSuccessful}}
       {{this.dataTask.last.value.firstName}}
     {{else if this.dataTask.last.isError}}

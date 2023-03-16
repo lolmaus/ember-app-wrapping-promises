@@ -4,7 +4,7 @@
 >
   <p>
     {{#if this.isPending}}
-      Loading...
+      Loading via native promise...
     {{else if this.isComplete}}
       {{this.data.firstName}}
     {{else if this.isError}}
@@ -18,7 +18,7 @@
   <p>
     <button
       type="button"
-      {{on "click" this.getData}}
+      {{on "click" (fn this.getData false)}}
     >
       Restart
     </button>

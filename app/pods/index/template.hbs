@@ -73,6 +73,34 @@
     </label>
   </li>
 
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="ember-async-data-template"
+        checked={{eq this.currentWrapper "ember-async-data-template"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      ember-async-data via template
+    </label>
+  </li>
+
+  <li>
+    <label>
+      <input
+        type="radio"
+        name="currentWrapper"
+        value="ember-async-data-js"
+        checked={{eq this.currentWrapper "ember-async-data-js"}}
+        {{on "change" this.setCurrentWrapper}}
+      />
+
+      ember-async-data via JS
+    </label>
+  </li>
+
 </ul>
 
 <div>
@@ -86,5 +114,9 @@
     <EmberPromiseHelpers />
   {{else if (eq this.currentWrapper "tracked-function")}}
     <TrackedFunction />
+  {{else if (eq this.currentWrapper "ember-async-data-template")}}
+    <EmberAsyncDataTemplate />
+  {{else if (eq this.currentWrapper "ember-async-data-js")}}
+    <EmberAsyncDataJs />
   {{/if}}
 </div>
