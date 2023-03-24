@@ -18,7 +18,7 @@ export default class MyServiceService extends Service {
 
   /* Actions */
 
-  getData = ({ shouldFail = false, delayMs = 2000 } = {}) => {
+  getData = ({ shouldFail = false, delayMs = 5000 } = {}) => {
     console.log('getData start');
     return new Promise((resolve, reject) => {
       setTimeout(() => {

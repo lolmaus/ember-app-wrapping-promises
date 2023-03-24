@@ -3,9 +3,11 @@
     {{#if this.resource.isPending}}
       Loading via trackedFunction...
 
-      {{#if this.resource.value}}
+      {{log "this.previous" this.previous}}
+
+      {{#if this.previous}}
         Previous value:
-        {{this.resource.value.firstName}}
+        {{this.previous.firstName}}
       {{/if}}
     {{else if this.resource.isResolved}}
       {{this.resource.value.firstName}}
