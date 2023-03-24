@@ -1,0 +1,26 @@
+<div class='EmberPromiseHelper' ...attributes>
+  <p>
+    {{#let (load this.promise) as |result|}}
+      {{#if result.isPending}}
+        Loading via ember-async-data template helpers...
+      {{else if result.isResolved}}
+        {{result.value.firstName}}
+      {{else if result.isRejected}}
+        Something went wrong:
+        {{format-error result.error}}
+      {{else}}
+        The promise failed to start, this should never happen.
+      {{/if}}
+    {{/let}}
+  </p>
+
+  <p>
+    <button type='button' {{on 'click' (fn this.restart false)}}>
+      Restart
+    </button>
+
+    <button type='button' {{on 'click' (fn this.restart true)}}>
+      Restart and fail
+    </button>
+  </p>
+</div>

@@ -19,14 +19,14 @@ export default class MyServiceService extends Service {
   /* Actions */
 
   getData = ({ shouldFail = false, delayMs = 2000 } = {}) => {
-    console.log('getData start')
+    console.log('getData start');
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (shouldFail) {
-          console.log('getData reject')
+          console.log('getData reject');
           reject(this._sampleError());
         } else {
-          console.log('getData resolve')
+          console.log('getData resolve');
           resolve(this._sampleData());
         }
       }, delayMs);

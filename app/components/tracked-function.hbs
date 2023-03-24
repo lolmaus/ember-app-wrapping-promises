@@ -1,36 +1,28 @@
-<div
-  class="TrackedFunction"
-  ...attributes
->
+<div class='TrackedFunction' ...attributes>
   <p>
     {{#if this.resource.isPending}}
       Loading via trackedFunction...
 
       {{#if this.resource.value}}
-         Previous value: {{this.resource.value.firstName}}
+        Previous value:
+        {{this.resource.value.firstName}}
       {{/if}}
-    {{else if (not this.resource.isError)}}
+    {{else if this.resource.isResolved}}
       {{this.resource.value.firstName}}
-    {{else if this.resource.isError}}
+    {{else if this.resource.isRejected}}
       Something went wrong:
-      {{format-error this.resource.error}}.
+      {{format-error this.resource.error}}
     {{else}}
       The promise failed to start, this should never happen.
     {{/if}}
   </p>
 
   <p>
-    <button
-      type="button"
-      {{on "click" (fn this.restart false)}}
-    >
+    <button type='button' {{on 'click' this.resource.retry}}>
       Restart
     </button>
 
-    <button
-      type="button"
-      {{on "click" (fn this.restart true)}}
-    >
+    <button type='button' {{on 'click' this.restartFail}}>
       Restart and fail
     </button>
   </p>

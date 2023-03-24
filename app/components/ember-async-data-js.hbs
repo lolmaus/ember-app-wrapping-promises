@@ -1,12 +1,12 @@
-<div class='PromiseProxyMixin' ...attributes>
+<div class='TrackedFunction' ...attributes>
   <p>
-    {{#if this.promiseProxy.isPending}}
-      Loading via PromiseProxyMixin...
-    {{else if this.promiseProxy.isFulfilled}}
-      {{this.promiseProxy.content.firstName}}
-    {{else if this.promiseProxy.isRejected}}
+    {{#if this.asyncData.isPending}}
+      Loading via ember-async-data JS...
+    {{else if this.asyncData.isResolved}}
+      {{this.asyncData.value.firstName}}
+    {{else if this.asyncData.isRejected}}
       Something went wrong:
-      {{format-error this.promiseProxy.reason}}
+      {{format-error this.asyncData.error}}
     {{else}}
       The promise failed to start, this should never happen.
     {{/if}}

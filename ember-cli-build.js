@@ -1,11 +1,23 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const {
+  createEmberCLIConfig,
+} = require('ember-cli-bundle-analyzer/create-config');
+const { defaultsDeep } = require('ember-cli-lodash-subset');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
-    // Add options here
-  });
+  const app = new EmberApp(
+    defaults,
+    defaultsDeep(
+      {
+        // your other options are here
+        // ...
+        sourcemaps: { enabled: true },
+      },
+      createEmberCLIConfig()
+    )
+  );
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

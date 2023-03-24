@@ -11,8 +11,9 @@ export default class TrackedFunctionComponent extends Component {
     return this.myService.getData({ shouldFail: this.shouldFail });
   });
 
-  restart = (shouldFail = false) => {
-    this.shouldFail = shouldFail;
+  restartFail = () => {
+    this.shouldFail = true;
     this.resource.retry();
+    this.shouldFail = false;
   };
 }

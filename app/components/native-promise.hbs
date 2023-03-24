@@ -1,7 +1,4 @@
-<div
-  class="NativePromise"
-  ...attributes
->
+<div class='NativePromise' ...attributes>
   <p>
     {{#if this.isPending}}
       Loading via native promise...
@@ -16,17 +13,11 @@
   </p>
 
   <p>
-    <button
-      type="button"
-      {{on "click" (fn this.getData false)}}
-    >
+    <button type='button' {{on 'click' (fn this.getData false)}}>
       Restart
     </button>
 
-    <button
-      type="button"
-      {{on "click" (fn this.getData true)}}
-    >
+    <button type='button' {{on 'click' (fn this.getData true)}}>
       Restart and fail
     </button>
   </p>

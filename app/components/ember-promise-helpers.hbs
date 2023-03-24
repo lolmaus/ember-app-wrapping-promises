@@ -1,13 +1,10 @@
-<div
-  class="EmberPromiseHelper"
-  ...attributes
->
+<div class='EmberPromiseHelper' ...attributes>
   <p>
     {{#if this.promise}}
       {{#if (is-pending this.promise)}}
         Loading via ember-promise-helper...
       {{else if (is-fulfilled this.promise)}}
-        {{get (await this.promise) "firstName"}}
+        {{get (await this.promise) 'firstName'}}
       {{else if (is-rejected this.promise)}}
         {{#let (promise-rejected-reason this.promise) as |error|}}
           {{#if error}}
@@ -22,17 +19,11 @@
   </p>
 
   <p>
-    <button
-      type="button"
-      {{on "click" (fn this.restart false)}}
-    >
+    <button type='button' {{on 'click' (fn this.restart false)}}>
       Restart
     </button>
 
-    <button
-      type="button"
-      {{on "click" (fn this.restart true)}}
-    >
+    <button type='button' {{on 'click' (fn this.restart true)}}>
       Restart and fail
     </button>
   </p>
