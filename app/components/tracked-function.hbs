@@ -1,9 +1,10 @@
+{{log "this.previous" this.previous this.resource.isPending "--" this.resource.value}}
+
 <div class='TrackedFunction' ...attributes>
   <p>
     {{#if this.resource.isPending}}
       Loading via trackedFunction...
 
-      {{log "this.previous" this.previous}}
 
       {{#if this.previous}}
         Previous value:
