@@ -4,7 +4,7 @@
       {{#if result.isPending}}
         Loading via ember-async-data template helpers...
       {{else if result.isResolved}}
-        {{result.value.firstName}}
+        <User @user={{result.value}}/>
       {{else if result.isRejected}}
         Something went wrong:
         {{format-error result.error}}

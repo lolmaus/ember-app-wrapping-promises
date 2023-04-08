@@ -3,7 +3,7 @@
     {{#if this.promiseProxy.isPending}}
       Loading via PromiseProxyMixin...
     {{else if this.promiseProxy.isFulfilled}}
-      {{this.promiseProxy.content.firstName}}
+      <User @user={{this.promiseProxy.content}}/>
     {{else if this.promiseProxy.isRejected}}
       Something went wrong:
       {{format-error this.promiseProxy.reason}}

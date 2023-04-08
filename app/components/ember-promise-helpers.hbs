@@ -4,7 +4,7 @@
       {{#if (is-pending this.promise)}}
         Loading via ember-promise-helper...
       {{else if (is-fulfilled this.promise)}}
-        {{get (await this.promise) 'firstName'}}
+        <User @user={{await this.promise}}/>
       {{else if (is-rejected this.promise)}}
         {{#let (promise-rejected-reason this.promise) as |error|}}
           {{#if error}}

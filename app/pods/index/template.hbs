@@ -101,6 +101,20 @@
     </label>
   </li>
 
+  <li>
+    <label>
+      <input
+        type='radio'
+        name='currentWrapper'
+        value='tracked-function-with-keep-latest'
+        checked={{eq this.currentWrapper 'tracked-function-with-keep-latest'}}
+        {{on 'change' this.setCurrentWrapper}}
+      />
+
+      trackedFunction with keepLatest
+    </label>
+  </li>
+
 </ul>
 
 <div>
@@ -118,5 +132,7 @@
     <EmberAsyncDataJs />
   {{else if (eq this.currentWrapper 'tracked-function')}}
     <TrackedFunction />
+  {{else if (eq this.currentWrapper 'tracked-function-with-keep-latest')}}
+    <TrackedFunctionWithKeepLatest />
   {{/if}}
 </div>

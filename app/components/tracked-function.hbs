@@ -2,15 +2,8 @@
   <p>
     {{#if this.resource.isPending}}
       Loading via trackedFunction...
-
-      {{log "this.previous" this.previous}}
-
-      {{#if this.previous}}
-        Previous value:
-        {{this.previous.firstName}}
-      {{/if}}
     {{else if this.resource.isResolved}}
-      {{this.resource.value.firstName}}
+      <User @user={{this.resource.value}}/>
     {{else if this.resource.isRejected}}
       Something went wrong:
       {{format-error this.resource.error}}

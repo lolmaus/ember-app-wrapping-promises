@@ -3,7 +3,7 @@
     {{#if this.isPending}}
       Loading via native promise...
     {{else if this.isComplete}}
-      {{this.data.firstName}}
+      <User @user={{this.data}}/>
     {{else if this.isError}}
       Something went wrong:
       {{format-error this.error}}

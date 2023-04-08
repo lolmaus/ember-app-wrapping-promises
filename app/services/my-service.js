@@ -1,14 +1,19 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import { faker } from '@faker-js/faker';
 
 export default class MyServiceService extends Service {
   @service router;
 
   _sampleData() {
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
+
     return {
-      firstName: 'John',
-      lastName: 'Doe',
-      age: 50,
+      firstName,
+      lastName,
+      age: faker.datatype.number({ min: 18, max: 99 }),
+      email: faker.internet.email(firstName, lastName),
     };
   }
 
@@ -18,15 +23,13 @@ export default class MyServiceService extends Service {
 
   /* Actions */
 
-  getData = ({ shouldFail = false, delayMs = 5000 } = {}) => {
+  getData = ({ shouldFail = false, delayMs = 2000 } = {}) => {
     console.log('getData start');
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         if (shouldFail) {
-          console.log('getData reject');
           reject(this._sampleError());
         } else {
-          console.log('getData resolve');
           resolve(this._sampleData());
         }
       }, delayMs);

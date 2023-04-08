@@ -1,0 +1,26 @@
+
+
+<div class='TrackedFunctionWithKeepLatest' ...attributes>
+  {{#if this.latest}}
+    <User @user={{this.latest}}/>
+  {{/if}}
+
+  {{#if this.resource.isPending}}
+    <p>Loading via trackedFunction...</p>
+  {{else if this.resource.isRejected}}
+    <p>
+      Something went wrong:
+      {{format-error this.resource.error}}
+    </p>
+  {{/if}}
+
+  <p>
+    <button type='button' {{on 'click' this.resource.retry}}>
+      Restart
+    </button>
+
+    <button type='button' {{on 'click' this.restartFail}}>
+      Restart and fail
+    </button>
+  </p>
+</div>

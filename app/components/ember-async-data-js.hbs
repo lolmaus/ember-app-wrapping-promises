@@ -3,7 +3,7 @@
     {{#if this.asyncData.isPending}}
       Loading via ember-async-data JS...
     {{else if this.asyncData.isResolved}}
-      {{this.asyncData.value.firstName}}
+      <User @user={{this.asyncData.value}}/>
     {{else if this.asyncData.isRejected}}
       Something went wrong:
       {{format-error this.asyncData.error}}
