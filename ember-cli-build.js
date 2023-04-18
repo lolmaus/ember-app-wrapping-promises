@@ -3,8 +3,10 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const {
   createEmberCLIConfig,
+  createWebpackConfig,
 } = require('ember-cli-bundle-analyzer/create-config');
 const { defaultsDeep } = require('ember-cli-lodash-subset');
+const { Webpack } = require('@embroider/webpack');
 
 module.exports = function (defaults) {
   const app = new EmberApp(
@@ -32,5 +34,13 @@ module.exports = function (defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  return require('@embroider/compat').compatBuild(app, Webpack, {
+    // your Embroider options...
+    packagerOptions: {
+      webpackConfig: {
+        // any custom webpack options you might have
+        ...createWebpackConfig(),
+      },
+    },
+  });
 };
