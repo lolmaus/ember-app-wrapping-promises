@@ -1,0 +1,20 @@
+<div class='NestedEmberConcurrencyFailureChainChild' ...attributes>
+  <p>
+    {{#if this.childTask.isRunning}}
+      Loading via ember-concurrency...
+    {{else if this.childTask.last.isSuccessful}}
+      <User @user={{this.childTask.last.value}}/>
+    {{else if this.childTask.last.isError}}
+      Something went wrong:
+      {{format-error this.childTask.last.error}}
+    {{else}}
+      The promise failed to start, this should never happen.
+    {{/if}}
+  </p>
+
+  <p>
+    <button type='button' {{on 'click' (perform this.childTask)}}>
+      Restart and fail
+    </button>
+  </p>
+</div>
