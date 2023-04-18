@@ -1,0 +1,33 @@
+<div
+  class="TrackedFunction"
+  ...attributes
+>
+  <p>
+    {{#if this.data.isPending}}
+      Loading via ember-async-data with JS...
+    {{else if this.data.isResolved}}
+      {{this.data.value.firstName}}
+    {{else if this.data.isRejected}}
+      Something went wrong:
+      {{format-error this.data.error}}.
+    {{else}}
+      The promise failed to start, this should never happen.
+    {{/if}}
+  </p>
+
+  <p>
+    <button
+      type="button"
+      {{on "click" (fn this.restart false)}}
+    >
+      Restart
+    </button>
+
+    <button
+      type="button"
+      {{on "click" (fn this.restart true)}}
+    >
+      Restart and fail
+    </button>
+  </p>
+</div>
