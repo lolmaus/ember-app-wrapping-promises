@@ -1,0 +1,26 @@
+{{log "this.parentTask.isRunning BEFORE" this.parentTask.isRunning}}
+
+<div class='NestedEmberConcurrencyFailureChainParent' ...attributes>
+  <h2>Parent component</h2>
+
+  <p>
+    {{#if this.parentTask.isRunning}}
+      Loading via ember-concurrency...
+    {{else if this.parentTask.last.isSuccessful}}
+      <User @user={{this.parentTask.last.value}}/>
+    {{else if this.parentTask.last.isError}}
+      Something went wrong:
+      {{format-error this.parentTask.last.error}}
+    {{else}}
+      The promise failed to start, this should never happen.
+    {{/if}}
+  </p>
+
+  <h2>Child component</h2>
+
+  <NestedEmberConcurrencyFailureChainChild
+    @parentTask={{this.parentTask}}
+  />
+</div>
+
+{{log "this.parentTask.isRunning AFTER" this.parentTask.isRunning}}
