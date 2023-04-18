@@ -1,25 +1,11 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const {
-  createEmberCLIConfig,
-  createWebpackConfig,
-} = require('ember-cli-bundle-analyzer/create-config');
-const { defaultsDeep } = require('ember-cli-lodash-subset');
-const { Webpack } = require('@embroider/webpack');
 
 module.exports = function (defaults) {
-  const app = new EmberApp(
-    defaults,
-    defaultsDeep(
-      {
-        // your other options are here
-        // ...
-        sourcemaps: { enabled: true },
-      },
-      createEmberCLIConfig()
-    )
-  );
+  let app = new EmberApp(defaults, {
+    // Add options here
+  });
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
@@ -34,13 +20,5 @@ module.exports = function (defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return require('@embroider/compat').compatBuild(app, Webpack, {
-    // your Embroider options...
-    packagerOptions: {
-      webpackConfig: {
-        // any custom webpack options you might have
-        ...createWebpackConfig(),
-      },
-    },
-  });
+  return app.toTree();
 };
